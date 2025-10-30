@@ -8,7 +8,9 @@ def test_login():
         portal.setup_driver()
         
         # TEST WITH DUMMY CREDENTIALS FIRST
-        success = portal.login("402130284", "2283980429aA")
+        username = "ENTER YOUR USERNAME"
+        password = "ENTER YOUR PASSWORD"
+        success = portal.login(username, password)
         
         if success:
             print("Ready to use real credentials!")
