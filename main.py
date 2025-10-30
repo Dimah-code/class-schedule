@@ -1,22 +1,18 @@
 from unilog import UniversityLogin
 
 
-def test_login():
+def login():
     portal = UniversityLogin()
     
     try:
         portal.setup_driver()
         
-        # TEST WITH DUMMY CREDENTIALS FIRST
+        # Enter your username and password
         username = "ENTER YOUR USERNAME"
         password = "ENTER YOUR PASSWORD"
-        success = portal.login(username, password)
+        portal.login(username, password)
         
-        if success:
-            print("Ready to use real credentials!")
-        else:
-            print("Need to adjust the script")
-            
+        
         # Keep browser open to inspect
         input("Press Enter to close browser...")
         
@@ -27,4 +23,4 @@ def test_login():
         open("abs_urls.txt", "w").close()
 
 if __name__ == "__main__":
-    test_login()
+    login()

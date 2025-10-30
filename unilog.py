@@ -49,7 +49,7 @@ class UniversityLogin:
             password_field.send_keys(password)
             login_button.click()
             
-            # Wait for login to complete - we'll need to see what page loads after login
+            # Wait for login to complete
             time.sleep(3)
 
             self.go_to_courses()
@@ -107,7 +107,7 @@ class UniversityLogin:
     def get_table(self, url):
 
         self.driver.get(url)
-        print(f"We go to {url}")
+        print(f"Extracting sessions from: {url}")
 
         title = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, 'h4')))
         table = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'table')))
@@ -154,7 +154,7 @@ class UniversityLogin:
                             session_data['end_gregorian'] = self.persian_to_georgian(end_date)
                         
                         if session_data:
-                            # ایجاد شناسه منحصر به فرد برای هر جلسه
+                            # Create a UID for each class 
                             session_data['uid'] = f"{class_name}_{len(sessions)+1}_{session_data['start_gregorian']}"
                             sessions.append(session_data)
                 
@@ -197,7 +197,8 @@ class UniversityLogin:
                 'day': str(georgian_date.day).zfill(2),
                 'time': time_str,
                 'date_object': georgian_datetime,
-                'full_date': full_date
+                'full_date': full_date,
+                'display': f"{georgian_date.year}/{georgian_date.month}/{georgian_date.day} - {time_str}"
             }
             
         except Exception as e:
@@ -206,7 +207,7 @@ class UniversityLogin:
 
     def create_ics_file(self, results, filename='class_schedule.ics'):
         """
-        ساده‌ترین نسخه
+        Create .ics file to import it calender apps
         """
         with open(filename, 'w', encoding='utf-8') as f:
             f.write("BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//University//FA\n")
@@ -227,43 +228,43 @@ class UniversityLogin:
             
             f.write("END:VCALENDAR\n")
         
-        print("✅ فایل ICS ایجاد شد")
-        print(f"{class_counter} class created, {session_counter} created")
-
+        print(f"{filename} created successfully ✅")
+        print(f"{class_counter} class created ✅")
+        print(f"{session_counter} session created successfully ✅")
 
 
     def print_debug_info(self, results):
         """
-        نمایش اطلاعات دیباگ برای اطمینان از صحت تبدیل تاریخ
+        print all information extracted
         """
         print("\n" + "=" * 80)
-        print("🔍 اطلاعات دیباگ (تمامی جلسات تبدیل شده)")
+        print("All sessions and classes")
         print("=" * 80)
         
         total_classes = len(results)
         total_sessions = sum(len(class_info['sessions']) for class_info in results)
         
-        print(f"📊 آمار کلی: {total_classes} کلاس | {total_sessions} جلسه")
+        print(f"{total_classes} Classes | {total_sessions} Sessions")
         print("-" * 80)
         
         for class_index, class_info in enumerate(results, 1):
-            print(f"\n🏫 کلاس {class_index}/{total_classes}: {class_info['class_name']}")
-            print(f"📅 تعداد جلسات: {len(class_info['sessions'])}")
+            print(f"\nClass {class_index}/{total_classes}: {class_info['class_name']}")
+            print(f"Number of sessions: {len(class_info['sessions'])}")
             print("-" * 60)
             
             for session_index, session in enumerate(class_info['sessions'], 1):
-                print(f"  🔸 جلسه {session_index}:")
-                print(f"     📅 تاریخ شمسی: {session['start_persian']} → {session['end_persian']}")
-                print(f"     🌍 تاریخ میلادی: {session['start_gregorian']} → {session['end_gregorian']}")
-            
-            # خط جداکننده بین کلاس‌ها
+                print(f"Session {session_index}:")
+                print(f"""
+Class starts on: {session['start_gregorian']['display']}
+Class ends on: {session['end_gregorian']['display']}
+""")
+
             if class_index < total_classes:
                 print("\n" + "─" * 60)
         
         print("\n" + "=" * 80)
-        print("✅ نمایش اطلاعات دیباگ به پایان رسید")
+        print("Information display is finished ✅")
         print("=" * 80)
-
 
 
     def close(self):

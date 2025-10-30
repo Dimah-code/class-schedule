@@ -1,19 +1,18 @@
-from bs4 import BeautifulSoup
 import re
 
 def persian_to_english_numbers(text):
     """Convert Persian numbers to English numbers"""
     persian_numbers = {
-        '۰': '0', '٠': '0',  # Persian and Arabic zero
-        '۱': '1', '١': '1',  # Persian and Arabic one
-        '۲': '2', '٢': '2',  # Persian and Arabic two
-        '۳': '3', '٣': '3',  # Persian and Arabic three
-        '۴': '4', '٤': '4',  # Persian and Arabic four
-        '۵': '5', '٥': '5',  # Persian and Arabic five
-        '۶': '6', '٦': '6',  # Persian and Arabic six
-        '۷': '7', '٧': '7',  # Persian and Arabic seven
-        '۸': '8', '٨': '8',  # Persian and Arabic eight
-        '۹': '9', '٩': '9'   # Persian and Arabic nine
+        '۰': '0', '٠': '0',
+        '۱': '1', '١': '1',
+        '۲': '2', '٢': '2',
+        '۳': '3', '٣': '3',
+        '۴': '4', '٤': '4',
+        '۵': '5', '٥': '5',
+        '۶': '6', '٦': '6',
+        '۷': '7', '٧': '7',
+        '۸': '8', '٨': '8',
+        '۹': '9', '٩': '9'
     }
     
     result = ''
@@ -25,32 +24,32 @@ def persian_to_english_numbers(text):
     return result
 
 def extract_date_components(date_string):
-    """استخراج جداگانه سال، ماه، روز و ساعت از تاریخ فارسی"""
-    # تبدیل اعداد فارسی به انگلیسی
+    """ Extract year month day and time """
+    # Convert persian numbers to english numbers
     cleaned = persian_to_english_numbers(date_string)
     
-    # استخراج زمان (باید قبل از استخراج اعداد انجام شود)
+    # Extract time before date
     time_match = re.search(r'(\d{1,2}:\d{2})', cleaned)
     time_str = time_match.group(1) if time_match else ""
     
-    # حذف زمان از متن برای جلوگیری از اشتباه
+    # remove time to imporve cleanness
     cleaned_without_time = re.sub(r'\d{1,2}:\d{2}', '', cleaned)
     
-    # استخراج اعداد (سال، ماه، روز)
+    # Extract date(Year, Month, Day)
     numbers = re.findall(r'\d+', cleaned_without_time)
     
-    # تشخیص ترتیب صحیح: در تاریخ فارسی معمولاً: روز ماه سال
+    # Make it in Persian date format
     year = ""
     month = ""
     day = ""
     
-    # سال همیشه ۴ رقمی است
+    # Year must be 4 digits
     for num in numbers:
         if len(num) == 4:
             year = num
             break
     
-    # ماه از نام ماه تشخیص داده می‌شود
+    # find month with month names
     month_names = {
         'فروردین': '1', 'اردیبهشت': '2', 'خرداد': '3',
         'تیر': '4', 'مرداد': '5', 'شهریور': '6',
@@ -63,7 +62,7 @@ def extract_date_components(date_string):
             month = month_num
             break
     
-    # روز: اولین عدد ۱ یا ۲ رقمی که سال نیست
+    # find day
     for num in numbers:
         if len(num) <= 2 and num != year and num != month:
             day = num
