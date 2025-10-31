@@ -257,7 +257,7 @@ We welcome contributions!
 - [ ] Real-time schedule updates
 - [ ] Mobile application
 - [ ] Cloud synchronization
-` [ ] Test scripts
+- [ ] Test scripts
 
 ## 👨‍💻 Author
 
