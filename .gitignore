@@ -1,5 +1,150 @@
-venv/
-__pycache__/*
-venv*
-venv/*
+# ============================================
+# Python Specific Ignore Rules
+# ============================================
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# ============================================
+# Environment & Configuration Files
+# ============================================
+
+# Virtual environments
+venv/
+env/
+ENV/
+.env
+.venv
+
+# Environment variables
+.env.local
+.env.*.local
+
+# Configuration files with secrets
+config.ini
+secrets.ini
+credentials.ini
+*.key
+*.pem
+
+# IDE settings
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ============================================
+# Project Specific Ignore Rules
+# ============================================
+
+# Temporary files from your scraper
+src/temp/
+*.html
+*.txt
+!requirements.txt
+
+# Output directory (you might want to keep some outputs)
+out/
+!out/.gitkeep
+
+# Log files
+*.log
+logs/
+
+# Selenium/webdriver cache
+.webdriver/
+webdriver/
+geckodriver.log
+
+# Chrome driver binaries (if manually installed)
+chromedriver
+chromedriver.exe
+
+# ============================================
+# Database and Data Files
+# ============================================
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+
+# ============================================
+# Build and Deployment Files
+# ============================================
+
+# Package managers
+Pipfile.lock
+poetry.lock
+
+# Build artifacts
+target/
