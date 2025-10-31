@@ -1,10 +1,10 @@
 # Class-Schedule - University Class Schedule Extractor 🎓📅
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)
 ![Selenium](https://img.shields.io/badge/Selenium-WebDriver-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-A sophisticated Python automation tool that extracts class schedules from university portals, converts Persian dates to Gregorian calendar, and generates importable ICS calendar files for seamless integration with popular calendar applications.
+A sophisticated Python automation tool that extracts class schedules from Shiraz Payame Noor University, converts Persian dates to Gregorian calendar, and generates importable ICS calendar files for seamless integration with popular calendar applications.
 
 ## 🌟 Features
 
@@ -25,11 +25,11 @@ A sophisticated Python automation tool that extracts class schedules from univer
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🚀 Installation
+## 🚀 <a id="installation"></a>Installation
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.12 or higher
 - Google Chrome browser
 - University portal credentials
 
@@ -43,7 +43,7 @@ A sophisticated Python automation tool that extracts class schedules from univer
 
 2. **Create virtual environment**
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
@@ -54,15 +54,15 @@ A sophisticated Python automation tool that extracts class schedules from univer
 
 4. **Verify installation**
    ```bash
-   python main.py --help
+   python3 main.py --help
    ```
 
-## 💻 Usage
+## 💻 <a id="usage"></a>Usage
 
 ### Basic Usage
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 The application will:
@@ -85,7 +85,7 @@ After successful execution, you'll find:
 2. **Apple Calendar**: File → Import → Select file
 3. **Outlook**: Calendar → Add Calendar → From file
 
-## 🏗️ Project Structure
+## 🏗️ <a id="project-structure"></a>Project Structure
 
 ```
 class-schedule/
@@ -109,7 +109,7 @@ class-schedule/
 └── tests/                 # Test suite (future)
 ```
 
-## 🔧 Technical Details
+## 🔧 <a id="technical-details"></a>Technical Details
 
 ### Core Components
 
@@ -149,7 +149,7 @@ gregorian_date = DateConverter.convert_persian_date_string(persian_date)
 - **ICS**: iCalendar file generation
 - **WebDriver Manager**: Automated browser driver management
 
-## ⚙️ Configuration
+## ⚙️ <a id="configuration"></a>Configuration
 
 ### Environment Setup
 
@@ -179,10 +179,10 @@ For different university portals, modify:
 
 ```bash
 # Run all tests
-python -m pytest tests/
+python3 -m pytest tests/
 
 # Run with coverage
-python -m pytest --cov=src tests/
+python3 -m pytest --cov=src tests/
 ```
 
 ### Test Coverage
@@ -215,10 +215,10 @@ python -m pytest --cov=src tests/
 
 Enable detailed logging:
 ```bash
-python main.py --debug
+python3 main.py --debug
 ```
 
-## 🤝 Contributing
+## 🤝 <a id="contributing"></a>Contributing
 
 We welcome contributions!
 
@@ -264,7 +264,7 @@ We welcome contributions!
 **Dimah**  
 - GitHub: [@Dimah](https://github.com/Dimah-code)
 
-## 📄 License
+## 📄 <a id="license"></a>License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
