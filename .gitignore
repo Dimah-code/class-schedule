@@ -148,3 +148,5 @@ poetry.lock
 
 # Build artifacts
 target/
+
+out/class_schedule.ics
