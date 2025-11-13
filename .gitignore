@@ -102,15 +102,6 @@ Thumbs.db
 # Project Specific Ignore Rules
 # ============================================
 
-# Temporary files from your scraper
-src/temp/
-*.html
-*.txt
-!requirements.txt
-
-# Output directory (you might want to keep some outputs)
-out/
-!out/.gitkeep
 
 # Log files
 *.log
@@ -125,18 +116,6 @@ geckodriver.log
 chromedriver
 chromedriver.exe
 
-# ============================================
-# Database and Data Files
-# ============================================
-
-# SQLite databases
-*.db
-*.sqlite
-*.sqlite3
-
-# Backup files
-*.bak
-*.backup
 
 # ============================================
 # Build and Deployment Files
@@ -149,4 +128,4 @@ poetry.lock
 # Build artifacts
 target/
 
-out/class_schedule.ics
+class_schedule.ics
